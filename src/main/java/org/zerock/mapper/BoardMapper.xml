@@ -31,7 +31,7 @@
   
   <select id="read" resultType="org.zerock.domain.BoardVO">
   	SELECT
-  		bno bno,   <!-- bno colimn은 bno keyword로 -->
+  		bno bno,   <!-- bno column은 bno keyword로 -->
   		title title,
   		content content,
   		writer writer,

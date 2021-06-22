@@ -18,7 +18,7 @@ public interface BoardMapper {
 	public int insert(BoardVO board);
 	/*
 	 	String sql = "INSERT INTO tbl_board(title, content, writer) VALUES (?,?,?)";
-	 	Prestatement pstmt = new Pre...........
+	 	PrepareStatement pstmt ....
 	 	pstmt.setString(1, board.getTitle());
 	 	pstmt.setString(2, board.getContent());
 	 	pstmt.setString(3, board.getWriter());
