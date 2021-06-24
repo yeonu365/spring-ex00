@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 public interface BoardMapper {
 
@@ -15,6 +16,9 @@ public interface BoardMapper {
 	myBatis 에서 확용하는 쿼리
 	이 쿼리들을 boardMapper.xml 파일에 따로 빼주기로 했다.
 	*/
+	
+	public List<BoardVO> getListWithPaging(Criteria cri);
+	
 	public int insert(BoardVO board);
 	/*
 	 	String sql = "INSERT INTO tbl_board(title, content, writer) VALUES (?,?,?)";
@@ -35,6 +39,8 @@ public interface BoardMapper {
 	public int delete(long bno);
 	
 	public int update(BoardVO board);
+
+	public int getTotalCount(Criteria cri);
 	
 }
 

@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
   <select id="getList" resultType="org.zerock.domain.BoardVO">
@@ -14,10 +15,32 @@
 		regdate regdate,
 		updatedate updateDate
 	FROM tbl_board
-	
 	WHERE bno > 0 ORDER BY bno DESC
+		
   ]]>
   </select>
+  
+    <select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+  <![CDATA[
+	SELECT 
+		bno bno,
+		title title,
+		content content,
+		writer writer,
+		regdate regdate,
+		updatedate updateDate
+	FROM tbl_board
+	ORDER BY bno DESC
+	
+	LIMIT #{from}, #{amount}
+	
+  ]]>
+  </select>
+  
+  <select id="getTotalCount" resultType="int">
+  SELECT COUNT(*) FROM tbl_board
+  </select>
+  
   
   <insert id="insert">
   	INSERT INTO tbl_board (title, content, writer)
