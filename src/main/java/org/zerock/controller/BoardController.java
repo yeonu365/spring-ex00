@@ -54,7 +54,7 @@ public class BoardController {
 		rttr.addFlashAttribute("result", board.getBno());
 		rttr.addFlashAttribute("messageTitle", "등록 성공");
 		rttr.addFlashAttribute("messageBody", board.getBno() + "번 게시물이 등록 되었습니다.");
-		// /board/list 로 redirect
+		//	/board/list 로 redirect
 		return "redirect:/board/list";
 	}
 	
@@ -87,6 +87,8 @@ public class BoardController {
 		
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		// forward or redirect
 		return "redirect:/board/list";
 	}
@@ -108,6 +110,8 @@ public class BoardController {
 		
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		// forward or redirect
 		return "redirect:/board/list";
 	}
