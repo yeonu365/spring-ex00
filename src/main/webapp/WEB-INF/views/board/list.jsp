@@ -62,7 +62,11 @@ $(document).ready(function() {
 					</c:url>
 					
 					<a href="${getUrl }">
-							${board.title }</a></td>
+							${board.title }
+							<c:if test="${board.replyCnt > 0 }">
+							 [${board.replyCnt }]
+							 </c:if>
+					</a></td>
 					<td>${board.writer }</td>
 					<td>
 						<fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }" /></td>
