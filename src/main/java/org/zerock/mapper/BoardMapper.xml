@@ -75,14 +75,15 @@
   
   <select id="read" resultType="org.zerock.domain.BoardVO">
   	SELECT
-  		bno bno,   <!-- bno column은 bno keyword로 -->
-  		title title,
-  		content content,
-  		writer writer,
-  		regdate regdate,
-  		updatedate updateDate
-  	FROM tbl_board
-  	WHERE bno = #{bno}  <!-- public interface BoardMapper (long bno) 의 bno -->
+  		b.bno bno,   <!-- bno column은 bno keyword로 -->
+  		b.title title,
+  		b.content content,
+  		b.writer writer,
+  		b.regdate regdate,
+  		b.updatedate updateDate,
+  		f.fileName fileName
+  	FROM tbl_board b LEFT JOIN tbl_board_file f ON b.bno = f.bno
+  	WHERE b.bno = #{bno}  <!-- public interface BoardMapper (long bno) 의 bno -->
   </select>
   
   <delete id="delete">

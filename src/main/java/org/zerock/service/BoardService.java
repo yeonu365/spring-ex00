@@ -2,6 +2,7 @@ package org.zerock.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 
@@ -21,5 +22,9 @@ public interface BoardService {
 	// criteria 에 page 정보를 넣었다
 
 	public int getTotal(Criteria cri);
+
+	public void register(BoardVO board, MultipartFile file);
+
+	public boolean modify(BoardVO board, MultipartFile file);
 	
 }
