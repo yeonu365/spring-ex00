@@ -2,6 +2,7 @@ package org.zerock.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +48,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/register")
+	@PreAuthorize("isAuthenticated()")
 	public String register(BoardVO board, 
 			@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {
 		board.setFileName(file.getOriginalFilename());
@@ -76,6 +78,8 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
+	@PreAuthorize("principal.username == #board.writer") // 책720쪽 아래
+//	@PreAuthorize("authication.name == #board.writer") // spring.io
 	public String modify(BoardVO board, Criteria cri, 
 			@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {
 		// request parameter 수집 (modify() 안에 .. 씀으로써 해결.
@@ -99,7 +103,9 @@ public class BoardController {
 	}
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, Criteria cri, RedirectAttributes rttr) {
+	@PreAuthorize("principal.username == #writer") // 책720쪽
+	public String remove(@RequestParam("bno") Long bno, 
+			Criteria cri, RedirectAttributes rttr, String writer) {
 		// parameter  수집
 		// @RequestParam("bno") 는 삭제 가능
 		
@@ -122,6 +128,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/register")
+	@PreAuthorize("isAuthenticated()")  //로그인 한 사람만 볼 수있게 한다. 673쪽
 	public void register(@ModelAttribute("cri") Criteria cri) {
 		// forward /WEB-INF/views/board/register.jsp
 		// dispatcher servlet이 registerjsp 로 보낸다.
