@@ -79,4 +79,13 @@ public class MemberMapperTests {
 		assertTrue(vo.isEnabled());
 	}
 	
+	@Test
+	public void testUpdate() {
+		MemberVO vo = mapper.read("newnew");
+		
+		String newpw = "newnew";
+		vo.setUserpw(encoder.encode(newpw));
+		
+		assertEquals(1, mapper.update(vo));
+	}
 }
